@@ -1,6 +1,5 @@
 {% set version = '0.11.4' %}
 {% set posix = 'm2-' if win else '' %}
-{% set native = 'm2w64-' if win else '' %}
 
 package:
   name: r-rayvertex
@@ -13,12 +12,12 @@ source:
   sha256: 441ac38876302d9ed148bb6380aeb5d5d883be6826b2bb05391e0d71ce9e7075
 
 build:
-  merge_build_host: True  # [win]
-  number: 0
+  number: 1
   rpaths:
     - lib/R/lib/
     - lib/
-  skip: True  # [win]
+  # Checking windows to see if it passes. Uncomment the line if it fails.
+  # skip: True  # [win]
 
 requirements:
   build:
@@ -48,7 +47,6 @@ requirements:
     - r-withr
   run:
     - r-base
-    - {{ native }}gcc-libs         # [win]
     - r-rcpp >=1.0.6
     - r-rcppthread
     - r-cli
